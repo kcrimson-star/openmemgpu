@@ -179,7 +179,24 @@ Every milestone in OpenMemGPU is proven with physical hardware data:
 
 ---
 
-## 7. Building & Testing
+## 7. Future Milestones & Public Roadmap (Open for Community Contributions 🚀)
+
+OpenMemGPU is designed from the ground up as a modular, vendor-extensible systems architecture. We actively welcome contributors from the open-source community to implement, test, and expand these planned milestones:
+
+| Milestone | Target Domain | Key Architecture & Tech | Status / Help Wanted |
+| :--- | :--- | :--- | :---: |
+| **Milestone 9** | 🎮 **Gaming & Proton/Steam Layer** | Vulkan Implicit Layer (`VK_LAYER_OPENMEMGPU`), DXVK, Proton transparent texture spilling | `[Open for RFC]` 🚀 |
+| **Milestone 10** | 🤖 **Local AI & LLM Inference** | `llama.cpp` integration, GGUF model layer splitting, KV cache auto-expansion | `[Open for RFC]` 🧠 |
+| **Milestone 11** | 🪟 **Windows OS Support** | Direct3D 12 Reserved Resources, DXGI Memory Budgets, WDDM Virtual Memory, `windows-rs` | `[Help Wanted]` 💻 |
+| **Milestone 12** | 🟢 **NVIDIA & CUDA Interoperability** | CUDA Driver API, `cuMemMap`, NVLink, Unified Memory (UVM), NVML telemetry | `[Help Wanted]` ⚡ |
+| **Milestone 13** | 🔷 **Intel Arc & Xe Graphics** | Intel Level Zero, Mesa ANV Vulkan backend, Xe-LPG APU coordination | `[Research]` 🔬 |
+| **Milestone 14** | 🌐 **CXL & Distributed Memory Pooling** | Compute Express Link (CXL 2.0/3.0), RDMA / RoCE cross-node GPU memory pooling | `[Long-Term]` 🔭 |
+
+👉 **Read the full technical specification and contribution guides in [docs/roadmap/future_milestones.md](docs/roadmap/future_milestones.md).**
+
+---
+
+## 8. Building & Testing
 
 ### Prerequisites
 - Linux with AMDGPU driver (or compatible Vulkan 1.3+ driver).
@@ -199,7 +216,14 @@ cargo build --release
 
 ---
 
-## 8. License
+## 9. Contributing
+
+We welcome pull requests, RFCs, and hardware benchmark submissions!
+Please check out [CONTRIBUTING.md](CONTRIBUTING.md) for architectural guidelines, coding style, and instructions on how to claim an upcoming milestone.
+
+---
+
+## 10. License
 
 Dual-licensed under either:
 - Apache License, Version 2.0 ([LICENSE-APACHE](LICENSE) or http://www.apache.org/licenses/LICENSE-2.0)

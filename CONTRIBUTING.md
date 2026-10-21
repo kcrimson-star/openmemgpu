@@ -39,3 +39,24 @@ cargo test --workspace
 # Run hardware discovery CLI
 cargo run -p openmemgpu-cli -- discover
 ```
+
+---
+
+## 3. Claiming & Contributing to Future Milestones
+
+We have outlined major upcoming milestones in [docs/roadmap/future_milestones.md](docs/roadmap/future_milestones.md):
+
+- **Milestone 9**: Vulkan Layer for Transparent Game & App Expansion (`VK_LAYER_OPENMEMGPU`)
+- **Milestone 10**: Native Local AI & LLM Inference Runtime (`llama.cpp` integration)
+- **Milestone 11**: Windows OS Support (Direct3D 12, DXGI, WDDM Virtual Memory)
+- **Milestone 12**: NVIDIA GPU Support & CUDA Interoperability (`cuMemMap`, NVLink)
+- **Milestone 13**: Intel Arc & Xe Graphics Support
+- **Milestone 14**: CXL & Distributed Networked Memory Pooling
+
+### How to Claim a Milestone or Feature
+1. Open an **RFC (Request for Comments)** issue titled `RFC: Milestone X - [Description]`.
+2. Outline your target hardware, proposed crate architecture, and verification strategy.
+3. Once aligned, submit PRs incrementally:
+   - PR 1: Hardware discovery / adapter enumeration.
+   - PR 2: Virtual memory allocation and buffer binding.
+   - PR 3: Hardware benchmarks and integration tests.

@@ -81,6 +81,7 @@ enum BenchEvent {
 
 struct OpenMemGpuApp {
     current_tab: AppTab,
+    _context: Option<Arc<VulkanContext>>,
     expander: Arc<DynamicVramExpander>,
     slider_add_gb: u32,
     expansion_status: VramExpansionStatus,
@@ -107,17 +108,17 @@ impl OpenMemGpuApp {
     fn new() -> Self {
         let (bench_tx, bench_rx) = channel();
 
-        let ctx = VulkanContext::new().ok();
+        let ctx = VulkanContext::new().ok().map(Arc::new);
         let (dgpu, igpu) = if let Some(ref c) = ctx {
             if let Ok(enumerated) = PhysicalDeviceEnumerator::enumerate(&c.instance) {
                 let d = enumerated
                     .iter()
                     .find(|(_, det)| det.kind == DeviceKind::DiscreteGpu)
-                    .and_then(|&(p, ref det)| VulkanDevice::new(&c.instance, p, det.clone()).ok());
+                    .and_then(|&(p, ref det)| VulkanDevice::new_with_context(c.clone(), p, det.clone()).ok());
                 let i = enumerated
                     .iter()
                     .find(|(_, det)| det.kind == DeviceKind::IntegratedGpu)
-                    .and_then(|&(p, ref det)| VulkanDevice::new(&c.instance, p, det.clone()).ok());
+                    .and_then(|&(p, ref det)| VulkanDevice::new_with_context(c.clone(), p, det.clone()).ok());
                 (d, i)
             } else {
                 (None, None)
@@ -139,7 +140,7 @@ impl OpenMemGpuApp {
         ));
 
         let expander = Arc::new(
-            DynamicVramExpander::new(manager, dgpu, igpu)
+            DynamicVramExpander::new(manager, dgpu, igpu, ctx.clone())
                 .expect("DynamicVramExpander initialization should succeed"),
         );
         let expansion_status = expander.status();
@@ -149,6 +150,7 @@ impl OpenMemGpuApp {
 
         Self {
             current_tab: AppTab::Expansion,
+            _context: ctx,
             expander,
             slider_add_gb: 2,
             expansion_status,

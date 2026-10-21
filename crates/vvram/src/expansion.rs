@@ -36,6 +36,7 @@ pub struct DynamicVramExpander {
     pub manager: Arc<VvramManager>,
     pub dgpu_device: Option<Arc<VulkanDevice>>,
     pub igpu_device: Option<Arc<VulkanDevice>>,
+    pub context: Option<Arc<openmemgpu_backend_vulkan::context::VulkanContext>>,
 }
 
 impl DynamicVramExpander {
@@ -43,6 +44,7 @@ impl DynamicVramExpander {
         manager: Arc<VvramManager>,
         dgpu_device: Option<Arc<VulkanDevice>>,
         igpu_device: Option<Arc<VulkanDevice>>,
+        context: Option<Arc<openmemgpu_backend_vulkan::context::VulkanContext>>,
     ) -> Result<Self, CoreError> {
         let memory_info = SystemMemoryInfo::discover()?;
         let base_dgpu_bytes = memory_info.dgpu_vram_bytes;
@@ -55,6 +57,7 @@ impl DynamicVramExpander {
             manager,
             dgpu_device,
             igpu_device,
+            context,
         })
     }
 
@@ -207,7 +210,7 @@ mod tests {
             openmemgpu_core::memory::DomainId(2),
         ));
 
-        let expander = DynamicVramExpander::new(manager, None, None)
+        let expander = DynamicVramExpander::new(manager, None, None, None)
             .expect("Expander creation should succeed");
         let initial_status = expander.status();
         assert_eq!(initial_status.expanded_igpu_vram_gb, 0.0);
@@ -229,7 +232,7 @@ mod tests {
 
     #[test]
     fn test_dynamic_vram_expansion_hardware() {
-        let ctx = VulkanContext::new().expect("VulkanContext creation should succeed");
+        let ctx = Arc::new(VulkanContext::new().expect("VulkanContext creation should succeed"));
         let enumerated =
             PhysicalDeviceEnumerator::enumerate(&ctx.instance).expect("Enumeration should succeed");
 
@@ -243,9 +246,9 @@ mod tests {
         if let (Some(&(dgpu_pdev, ref dgpu_details)), Some(&(igpu_pdev, ref igpu_details))) =
             (dgpu_entry, igpu_entry)
         {
-            let dgpu = VulkanDevice::new(&ctx.instance, dgpu_pdev, dgpu_details.clone())
+            let dgpu = VulkanDevice::new_with_context(ctx.clone(), dgpu_pdev, dgpu_details.clone())
                 .expect("dGPU should create");
-            let igpu = VulkanDevice::new(&ctx.instance, igpu_pdev, igpu_details.clone())
+            let igpu = VulkanDevice::new_with_context(ctx.clone(), igpu_pdev, igpu_details.clone())
                 .expect("iGPU should create");
 
             let ledger = Arc::new(PhysicalMemoryLedger::new(
@@ -260,7 +263,7 @@ mod tests {
                 openmemgpu_core::memory::DomainId(2),
             ));
 
-            let expander = DynamicVramExpander::new(manager, Some(dgpu), Some(igpu))
+            let expander = DynamicVramExpander::new(manager, Some(dgpu), Some(igpu), Some(ctx.clone()))
                 .expect("Expander should create");
 
             // Expand by +2 GB on real hardware (allocates real backing buffer on iGPU host RAM)

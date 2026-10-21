@@ -808,7 +808,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         }
         Commands::Expand { add_gb } => {
             println!("=== OpenMemGPU Dynamic VRAM Capacity Expander ===");
-            let ctx = VulkanContext::new()?;
+            let ctx = Arc::new(VulkanContext::new()?);
             let enumerated = PhysicalDeviceEnumerator::enumerate(&ctx.instance)?;
             let dgpu_entry = enumerated
                 .iter()
@@ -818,9 +818,9 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 .find(|(_, d)| d.kind == openmemgpu_core::device::DeviceKind::IntegratedGpu);
 
             let dgpu = dgpu_entry
-                .map(|&(p, ref d)| VulkanDevice::new(&ctx.instance, p, d.clone()).unwrap());
+                .map(|&(p, ref d)| VulkanDevice::new_with_context(ctx.clone(), p, d.clone()).unwrap());
             let igpu = igpu_entry
-                .map(|&(p, ref d)| VulkanDevice::new(&ctx.instance, p, d.clone()).unwrap());
+                .map(|&(p, ref d)| VulkanDevice::new_with_context(ctx.clone(), p, d.clone()).unwrap());
 
             let ledger = Arc::new(PhysicalMemoryLedger::new(
                 6 * 1024 * 1024 * 1024,
@@ -834,7 +834,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 openmemgpu_core::memory::DomainId(2),
             ));
 
-            let expander = DynamicVramExpander::new(manager, dgpu, igpu)?;
+            let expander = DynamicVramExpander::new(manager, dgpu, igpu, Some(ctx.clone()))?;
             let mem = &expander.memory_info;
 
             println!("System Hardware Discovery:");

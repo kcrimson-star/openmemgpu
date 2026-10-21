@@ -10,6 +10,7 @@ pub struct VulkanDevice {
     pub compute_queue: vk::Queue,
     pub compute_queue_family: u32,
     pub non_coherent_atom_size: u64,
+    pub context: Option<Arc<crate::context::VulkanContext>>,
 }
 
 unsafe impl Send for VulkanDevice {}
@@ -64,6 +65,61 @@ impl VulkanDevice {
             compute_queue: queue,
             compute_queue_family: compute_family_index,
             non_coherent_atom_size,
+            context: None,
+        }))
+    }
+
+    /// Create VulkanDevice retaining a strong reference to VulkanContext to ensure parent VkInstance outlives the device
+    pub fn new_with_context(
+        context: Arc<crate::context::VulkanContext>,
+        pdev: vk::PhysicalDevice,
+        details: PhysicalDeviceDetails,
+    ) -> Result<Arc<Self>, CoreError> {
+        let dev_props = unsafe { context.instance.get_physical_device_properties(pdev) };
+        let non_coherent_atom_size = dev_props.limits.non_coherent_atom_size;
+
+        let compute_family_index = details
+            .queue_families
+            .iter()
+            .find(|q| q.supports_compute && !q.supports_graphics)
+            .or_else(|| details.queue_families.iter().find(|q| q.supports_compute))
+            .map(|q| q.index)
+            .ok_or_else(|| CoreError::BackendInitFailed("No compute queue family found".into()))?;
+
+        let queue_priorities = [1.0f32];
+        let queue_create_infos = [vk::DeviceQueueCreateInfo::default()
+            .queue_family_index(compute_family_index)
+            .queue_priorities(&queue_priorities)];
+
+        let mut vulkan12_features =
+            vk::PhysicalDeviceVulkan12Features::default().timeline_semaphore(true);
+
+        let device_create_info = vk::DeviceCreateInfo::default()
+            .queue_create_infos(&queue_create_infos)
+            .push_next(&mut vulkan12_features);
+
+        let device = unsafe {
+            context
+                .instance
+                .create_device(pdev, &device_create_info, None)
+                .map_err(|e| {
+                    CoreError::BackendInitFailed(format!(
+                        "Failed to create Vulkan logical device: {:?}",
+                        e
+                    ))
+                })?
+        };
+
+        let queue = unsafe { device.get_device_queue(compute_family_index, 0) };
+
+        Ok(Arc::new(Self {
+            raw: device,
+            physical_device: pdev,
+            details,
+            compute_queue: queue,
+            compute_queue_family: compute_family_index,
+            non_coherent_atom_size,
+            context: Some(context),
         }))
     }
 

@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=OpenMemGPU
+GenericName=Virtual VRAM Orchestrator
+Comment=Coordinate discrete and integrated GPUs with dynamic unified Virtual VRAM expansion
+Exec=/home/mike/Desktop/prjkt/openmemgpu/scripts/launch-gui.sh
+Icon=/home/mike/Desktop/prjkt/openmemgpu/assets/openmemgpu.svg
+Terminal=false
+Categories=System;HardwareSettings;Development;
+Keywords=gpu;vram;vulkan;amd;memory;vvram;
+StartupNotify=true

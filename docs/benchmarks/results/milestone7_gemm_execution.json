@@ -1,0 +1,41 @@
+{
+  "m": 1024,
+  "k": 1024,
+  "n": 1024,
+  "total_ops_giga": 2.147483648,
+  "dgpu_only": {
+    "mode": "DiscreteGpuOnly",
+    "m": 1024,
+    "k": 1024,
+    "n": 1024,
+    "compute_time_us": 11189.347,
+    "transfer_time_us": 0.0,
+    "wallclock_time_us": 11189.347,
+    "gflops": 191.92216024759983,
+    "correctness_verified": true
+  },
+  "igpu_only": {
+    "mode": "IntegratedGpuOnly",
+    "m": 1024,
+    "k": 1024,
+    "n": 1024,
+    "compute_time_us": 40563.784999999996,
+    "transfer_time_us": 0.0,
+    "wallclock_time_us": 40563.784999999996,
+    "gflops": 52.940908941313054,
+    "correctness_verified": true
+  },
+  "partitioned_multigpu": {
+    "mode": "PartitionedMultiGpu",
+    "m": 1024,
+    "k": 1024,
+    "n": 1024,
+    "compute_time_us": 11271.943,
+    "transfer_time_us": 3280.5,
+    "wallclock_time_us": 14532.596,
+    "gflops": 147.77013329208356,
+    "correctness_verified": true
+  },
+  "speedup_vs_dgpu": 0.7699482597603347,
+  "speedup_vs_igpu": 2.791227733847414
+}

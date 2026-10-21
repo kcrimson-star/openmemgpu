@@ -1,0 +1,13 @@
+[package]
+name = "openmemgpu-integrations"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+
+[dependencies]
+openmemgpu-core.workspace = true
+openmemgpu-vvram.workspace = true
+openmemgpu-scheduler.workspace = true
+tracing.workspace = true
+serde.workspace = true

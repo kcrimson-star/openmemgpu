@@ -1,0 +1,16 @@
+[package]
+name = "openmemgpu-transfer"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+
+[dependencies]
+openmemgpu-core.workspace = true
+openmemgpu-memory.workspace = true
+openmemgpu-backend-vulkan.workspace = true
+ash.workspace = true
+parking_lot.workspace = true
+tracing.workspace = true
+serde.workspace = true
+

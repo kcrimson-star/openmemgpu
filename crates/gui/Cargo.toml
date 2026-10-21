@@ -1,0 +1,27 @@
+[package]
+name = "openmemgpu-gui"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "openmemgpu-gui"
+path = "src/main.rs"
+
+[dependencies]
+openmemgpu-core.workspace = true
+openmemgpu-device-discovery.workspace = true
+openmemgpu-backend-vulkan.workspace = true
+openmemgpu-backend-amd.workspace = true
+openmemgpu-vvram.workspace = true
+openmemgpu-memory.workspace = true
+openmemgpu-scheduler.workspace = true
+openmemgpu-transfer.workspace = true
+openmemgpu-bench.workspace = true
+eframe.workspace = true
+tracing.workspace = true
+tracing-subscriber.workspace = true
+parking_lot.workspace = true
+serde.workspace = true
+serde_json.workspace = true

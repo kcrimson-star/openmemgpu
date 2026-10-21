@@ -1,0 +1,14 @@
+[package]
+name = "openmemgpu-backend-vulkan"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+
+[dependencies]
+openmemgpu-core.workspace = true
+ash.workspace = true
+parking_lot.workspace = true
+tracing.workspace = true
+serde.workspace = true
+naga = { version = "24", features = ["wgsl-in", "spv-out"] }

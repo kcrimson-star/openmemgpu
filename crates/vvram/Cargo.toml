@@ -1,0 +1,23 @@
+[package]
+name = "openmemgpu-vvram"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+
+[dependencies]
+openmemgpu-core.workspace = true
+openmemgpu-device-discovery.workspace = true
+openmemgpu-memory.workspace = true
+openmemgpu-backend-vulkan.workspace = true
+openmemgpu-transfer.workspace = true
+ash.workspace = true
+parking_lot.workspace = true
+tracing.workspace = true
+serde.workspace = true
+thiserror.workspace = true
+
+[dev-dependencies]
+openmemgpu-scheduler.workspace = true
+openmemgpu-integrations.workspace = true
+

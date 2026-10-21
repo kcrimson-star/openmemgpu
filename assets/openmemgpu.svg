@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="grad_bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#12131a" />
+      <stop offset="100%" stop-color="#1c1f2e" />
+    </linearGradient>
+    <linearGradient id="grad_cyan" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00e5ff" />
+      <stop offset="100%" stop-color="#0077ff" />
+    </linearGradient>
+    <linearGradient id="grad_pink" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff5555" />
+      <stop offset="100%" stop-color="#ff2a85" />
+    </linearGradient>
+    <linearGradient id="grad_emerald" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#50fa7b" />
+      <stop offset="100%" stop-color="#05c46b" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Base Card -->
+  <rect x="24" y="24" width="464" height="464" rx="96" fill="url(#grad_bg)" stroke="#2b3044" stroke-width="6" />
+
+  <!-- Outer Bus Interconnects -->
+  <g stroke="#3a425c" stroke-width="4" stroke-dasharray="8 6" opacity="0.6">
+    <line x1="80" y1="256" x2="432" y2="256" />
+    <line x1="256" y1="80" x2="256" y2="432" />
+  </g>
+
+  <!-- Central Processing Core (dGPU) -->
+  <rect x="156" y="156" width="200" height="200" rx="36" fill="#181a24" stroke="url(#grad_cyan)" stroke-width="6" filter="url(#glow)" />
+  
+  <!-- Discrete Memory Bank (GDDR6) -->
+  <rect x="76" y="196" width="56" height="120" rx="14" fill="url(#grad_pink)" opacity="0.9" filter="url(#glow)" />
+  
+  <!-- Integrated Memory Bank (Expanded DDR4) -->
+  <rect x="380" y="196" width="56" height="120" rx="14" fill="url(#grad_emerald)" opacity="0.9" filter="url(#glow)" />
+
+  <!-- Top / Bottom Bridges -->
+  <rect x="196" y="76" width="120" height="56" rx="14" fill="#242838" stroke="#00e5ff" stroke-width="3" />
+  <rect x="196" y="380" width="120" height="56" rx="14" fill="#242838" stroke="#50fa7b" stroke-width="3" />
+
+  <!-- Core Circuit Traces & Monogram -->
+  <circle cx="256" cy="256" r="48" fill="none" stroke="url(#grad_cyan)" stroke-width="5" />
+  <path d="M226 256 L246 230 L266 282 L286 256" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+  
+  <!-- Connection Bridge Lines -->
+  <line x1="132" y1="256" x2="156" y2="256" stroke="#ff5555" stroke-width="5" />
+  <line x1="356" y1="256" x2="380" y2="256" stroke="#50fa7b" stroke-width="5" />
+</svg>

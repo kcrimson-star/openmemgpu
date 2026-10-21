@@ -1,0 +1,101 @@
+{
+  "timestamp_utc": "2026-10-21T13:30:00Z",
+  "os_name": "Pop!_OS 24.04 LTS",
+  "kernel_version": "Linux 7.2.6-generic",
+  "evidence": "MeasuredOnPhysicalHardware",
+  "cases": [
+    {
+      "direction": "dGPU (Dedicated GDDR6) -> iGPU (Host DDR4)",
+      "element_count": 16384,
+      "buffer_size_bytes": 65536,
+      "src_download_us_median": 614.3960000000001,
+      "dst_upload_us_median": 46.207,
+      "total_transfer_us_median": 660.043,
+      "effective_bandwidth_gbps": 0.09929050077040436,
+      "correctness_verified": true
+    },
+    {
+      "direction": "iGPU (Host DDR4) -> dGPU (Dedicated GDDR6)",
+      "element_count": 16384,
+      "buffer_size_bytes": 65536,
+      "src_download_us_median": 373.85,
+      "dst_upload_us_median": 379.57099999999997,
+      "total_transfer_us_median": 753.641,
+      "effective_bandwidth_gbps": 0.08695917552256313,
+      "correctness_verified": true
+    },
+    {
+      "direction": "dGPU (Dedicated GDDR6) -> iGPU (Host DDR4)",
+      "element_count": 1048576,
+      "buffer_size_bytes": 4194304,
+      "src_download_us_median": 18424.550000000003,
+      "dst_upload_us_median": 1172.315,
+      "total_transfer_us_median": 19579.211,
+      "effective_bandwidth_gbps": 0.21422231978602205,
+      "correctness_verified": true
+    },
+    {
+      "direction": "iGPU (Host DDR4) -> dGPU (Dedicated GDDR6)",
+      "element_count": 1048576,
+      "buffer_size_bytes": 4194304,
+      "src_download_us_median": 24091.946,
+      "dst_upload_us_median": 2184.807,
+      "total_transfer_us_median": 26278.727000000003,
+      "effective_bandwidth_gbps": 0.15960834023657233,
+      "correctness_verified": true
+    },
+    {
+      "direction": "dGPU (Dedicated GDDR6) -> iGPU (Host DDR4)",
+      "element_count": 4194304,
+      "buffer_size_bytes": 16777216,
+      "src_download_us_median": 72683.812,
+      "dst_upload_us_median": 4565.505,
+      "total_transfer_us_median": 77289.123,
+      "effective_bandwidth_gbps": 0.21707085484719502,
+      "correctness_verified": true
+    },
+    {
+      "direction": "iGPU (Host DDR4) -> dGPU (Dedicated GDDR6)",
+      "element_count": 4194304,
+      "buffer_size_bytes": 16777216,
+      "src_download_us_median": 94779.299,
+      "dst_upload_us_median": 7478.895,
+      "total_transfer_us_median": 102255.84999999999,
+      "effective_bandwidth_gbps": 0.1640709651330462,
+      "correctness_verified": true
+    }
+  ],
+  "dma_buf_feasibility": {
+    "devices": [
+      {
+        "device_name": "AMD Radeon RX 5600M (RADV NAVI10)",
+        "pci_address": "0000:03:00.0",
+        "supports_external_memory_fd_extension": true,
+        "dma_buf_exportable": true,
+        "dma_buf_importable": true,
+        "compatible_handle_types": 513,
+        "findings": "RADV Driver supports ext_fd: true, DMA-BUF export: true, import: true, compatible_handles: 0x201"
+      },
+      {
+        "device_name": "AMD Radeon Graphics (RADV RENOIR)",
+        "pci_address": "0000:07:00.0",
+        "supports_external_memory_fd_extension": true,
+        "dma_buf_exportable": true,
+        "dma_buf_importable": true,
+        "compatible_handle_types": 513,
+        "findings": "RADV Driver supports ext_fd: true, DMA-BUF export: true, import: true, compatible_handles: 0x201"
+      },
+      {
+        "device_name": "llvmpipe (LLVM 20.1.2, 256 bits)",
+        "pci_address": null,
+        "supports_external_memory_fd_extension": true,
+        "dma_buf_exportable": false,
+        "dma_buf_importable": true,
+        "compatible_handle_types": 512,
+        "findings": "RADV Driver supports ext_fd: true, DMA-BUF export: false, import: true, compatible_handles: 0x200"
+      }
+    ],
+    "direct_cross_gpu_dma_supported": true,
+    "architectural_summary": "Hardware and RADV driver support VK_EXTERNAL_MEMORY_HANDLE_TYPE_DMA_BUF_BIT_EXT on both devices. Direct zero-copy or DRM PRIME export/import is theoretically feasible, subject to kernel amdgpu DMA-BUF memory-type pinning rules."
+  }
+}

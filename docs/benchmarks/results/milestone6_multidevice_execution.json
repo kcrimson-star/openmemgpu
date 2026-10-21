@@ -1,0 +1,926 @@
+{
+  "timestamp_utc": "2026-10-21T13:45:00Z",
+  "os_name": "Pop!_OS 24.04 LTS",
+  "kernel_version": "Linux 7.2.6-generic",
+  "dgpu_name": "AMD Radeon RX 5600M (RADV NAVI10)",
+  "igpu_name": "AMD Radeon Graphics (RADV RENOIR)",
+  "driver_version": "26.1.6",
+  "comparisons": [
+    {
+      "total_elements": 16384,
+      "buffer_size_bytes": 65536,
+      "dgpu_only": {
+        "mode": "DiscreteGpuOnly",
+        "total_elements": 16384,
+        "buffer_size_bytes": 65536,
+        "dgpu_elements": 16384,
+        "igpu_elements": 0,
+        "iterations": 10,
+        "warmup_iterations": 3,
+        "alloc_time_us": {
+          "median": 58.361,
+          "p95": 75.49300000000001,
+          "min": 47.731,
+          "max": 75.49300000000001,
+          "sample_count": 10
+        },
+        "upload_time_us": {
+          "median": 703.034,
+          "p95": 805.1080000000001,
+          "min": 651.566,
+          "max": 805.1080000000001,
+          "sample_count": 10
+        },
+        "dgpu_compute_time_us": {
+          "median": 306.822,
+          "p95": 360.574,
+          "min": 189.88,
+          "max": 360.574,
+          "sample_count": 10
+        },
+        "igpu_compute_time_us": {
+          "median": 0.0,
+          "p95": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "sample_count": 10
+        },
+        "parallel_compute_time_us": {
+          "median": 306.822,
+          "p95": 360.574,
+          "min": 189.88,
+          "max": 360.574,
+          "sample_count": 10
+        },
+        "cross_device_transfer_time_us": {
+          "median": 0.0,
+          "p95": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "sample_count": 10
+        },
+        "sync_and_merge_time_us": {
+          "median": 0.0,
+          "p95": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "sample_count": 10
+        },
+        "download_time_us": {
+          "median": 639.744,
+          "p95": 893.0640000000001,
+          "min": 530.586,
+          "max": 893.0640000000001,
+          "sample_count": 10
+        },
+        "end_to_end_wallclock_us": {
+          "median": 2089.203,
+          "p95": 3027.413,
+          "min": 1877.641,
+          "max": 3027.413,
+          "sample_count": 10
+        },
+        "effective_throughput_gbps": 0.15684450003183031,
+        "correctness_verified": true
+      },
+      "igpu_only": {
+        "mode": "IntegratedGpuOnly",
+        "total_elements": 16384,
+        "buffer_size_bytes": 65536,
+        "dgpu_elements": 0,
+        "igpu_elements": 16384,
+        "iterations": 10,
+        "warmup_iterations": 3,
+        "alloc_time_us": {
+          "median": 87.41600000000001,
+          "p95": 210.259,
+          "min": 58.411,
+          "max": 210.259,
+          "sample_count": 10
+        },
+        "upload_time_us": {
+          "median": 89.74000000000001,
+          "p95": 122.06099999999999,
+          "min": 51.778,
+          "max": 122.06099999999999,
+          "sample_count": 10
+        },
+        "dgpu_compute_time_us": {
+          "median": 0.0,
+          "p95": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "sample_count": 10
+        },
+        "igpu_compute_time_us": {
+          "median": 481.524,
+          "p95": 3883.7479999999996,
+          "min": 157.939,
+          "max": 3883.7479999999996,
+          "sample_count": 10
+        },
+        "parallel_compute_time_us": {
+          "median": 481.524,
+          "p95": 3883.7479999999996,
+          "min": 157.939,
+          "max": 3883.7479999999996,
+          "sample_count": 10
+        },
+        "cross_device_transfer_time_us": {
+          "median": 0.0,
+          "p95": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "sample_count": 10
+        },
+        "sync_and_merge_time_us": {
+          "median": 0.0,
+          "p95": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "sample_count": 10
+        },
+        "download_time_us": {
+          "median": 407.76300000000003,
+          "p95": 719.835,
+          "min": 285.421,
+          "max": 719.835,
+          "sample_count": 10
+        },
+        "end_to_end_wallclock_us": {
+          "median": 1794.0829999999999,
+          "p95": 5267.983,
+          "min": 1015.6959999999999,
+          "max": 5267.983,
+          "sample_count": 10
+        },
+        "effective_throughput_gbps": 0.1826448386167195,
+        "correctness_verified": true
+      },
+      "partitioned_multigpu": {
+        "mode": "PartitionedMultiGpu",
+        "total_elements": 16384,
+        "buffer_size_bytes": 65536,
+        "dgpu_elements": 14159,
+        "igpu_elements": 2225,
+        "iterations": 10,
+        "warmup_iterations": 3,
+        "alloc_time_us": {
+          "median": 155.084,
+          "p95": 208.295,
+          "min": 113.545,
+          "max": 208.295,
+          "sample_count": 10
+        },
+        "upload_time_us": {
+          "median": 780.961,
+          "p95": 1044.6819999999998,
+          "min": 701.631,
+          "max": 1044.6819999999998,
+          "sample_count": 10
+        },
+        "dgpu_compute_time_us": {
+          "median": 206.47199999999998,
+          "p95": 327.90200000000004,
+          "min": 184.93099999999998,
+          "max": 327.90200000000004,
+          "sample_count": 10
+        },
+        "igpu_compute_time_us": {
+          "median": 379.63900000000007,
+          "p95": 819.7159999999999,
+          "min": 210.059,
+          "max": 819.7159999999999,
+          "sample_count": 10
+        },
+        "parallel_compute_time_us": {
+          "median": 1040.184,
+          "p95": 1784.836,
+          "min": 801.841,
+          "max": 1784.836,
+          "sample_count": 10
+        },
+        "cross_device_transfer_time_us": {
+          "median": 408.124,
+          "p95": 458.089,
+          "min": 337.901,
+          "max": 458.089,
+          "sample_count": 10
+        },
+        "sync_and_merge_time_us": {
+          "median": 0.04,
+          "p95": 0.049999999999999996,
+          "min": 0.03,
+          "max": 0.049999999999999996,
+          "sample_count": 10
+        },
+        "download_time_us": {
+          "median": 988.004,
+          "p95": 1385.469,
+          "min": 768.3879999999999,
+          "max": 1385.469,
+          "sample_count": 10
+        },
+        "end_to_end_wallclock_us": {
+          "median": 3440.596,
+          "p95": 4387.663,
+          "min": 2919.6679999999997,
+          "max": 4387.663,
+          "sample_count": 10
+        },
+        "effective_throughput_gbps": 0.09523931318876147,
+        "correctness_verified": true
+      },
+      "speedup_vs_dgpu": 0.6072212488766481,
+      "speedup_vs_igpu": 0.521445412364602,
+      "outcome_summary": "Multi-Device execution is SLOWER (0.61x of dGPU latency). Cross-device transfer overhead (408.1 us) outweighs parallel compute gains."
+    },
+    {
+      "total_elements": 1048576,
+      "buffer_size_bytes": 4194304,
+      "dgpu_only": {
+        "mode": "DiscreteGpuOnly",
+        "total_elements": 1048576,
+        "buffer_size_bytes": 4194304,
+        "dgpu_elements": 1048576,
+        "igpu_elements": 0,
+        "iterations": 10,
+        "warmup_iterations": 3,
+        "alloc_time_us": {
+          "median": 58.31,
+          "p95": 125.88899999999998,
+          "min": 54.162,
+          "max": 125.88899999999998,
+          "sample_count": 10
+        },
+        "upload_time_us": {
+          "median": 4899.544,
+          "p95": 5933.044,
+          "min": 4507.851000000001,
+          "max": 5933.044,
+          "sample_count": 10
+        },
+        "dgpu_compute_time_us": {
+          "median": 493.686,
+          "p95": 551.7560000000001,
+          "min": 389.73900000000003,
+          "max": 551.7560000000001,
+          "sample_count": 10
+        },
+        "igpu_compute_time_us": {
+          "median": 0.0,
+          "p95": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "sample_count": 10
+        },
+        "parallel_compute_time_us": {
+          "median": 493.686,
+          "p95": 551.7560000000001,
+          "min": 389.73900000000003,
+          "max": 551.7560000000001,
+          "sample_count": 10
+        },
+        "cross_device_transfer_time_us": {
+          "median": 0.0,
+          "p95": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "sample_count": 10
+        },
+        "sync_and_merge_time_us": {
+          "median": 0.0,
+          "p95": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "sample_count": 10
+        },
+        "download_time_us": {
+          "median": 25305.993,
+          "p95": 25870.654,
+          "min": 18454.586,
+          "max": 25870.654,
+          "sample_count": 10
+        },
+        "end_to_end_wallclock_us": {
+          "median": 31459.476,
+          "p95": 32785.651,
+          "min": 24608.992,
+          "max": 32785.651,
+          "sample_count": 10
+        },
+        "effective_throughput_gbps": 0.6666201306086599,
+        "correctness_verified": true
+      },
+      "igpu_only": {
+        "mode": "IntegratedGpuOnly",
+        "total_elements": 1048576,
+        "buffer_size_bytes": 4194304,
+        "dgpu_elements": 0,
+        "igpu_elements": 1048576,
+        "iterations": 10,
+        "warmup_iterations": 3,
+        "alloc_time_us": {
+          "median": 368.058,
+          "p95": 519.565,
+          "min": 144.123,
+          "max": 519.565,
+          "sample_count": 10
+        },
+        "upload_time_us": {
+          "median": 2404.832,
+          "p95": 2531.862,
+          "min": 2307.5370000000003,
+          "max": 2531.862,
+          "sample_count": 10
+        },
+        "dgpu_compute_time_us": {
+          "median": 0.0,
+          "p95": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "sample_count": 10
+        },
+        "igpu_compute_time_us": {
+          "median": 966.073,
+          "p95": 2190.466,
+          "min": 774.469,
+          "max": 2190.466,
+          "sample_count": 10
+        },
+        "parallel_compute_time_us": {
+          "median": 966.073,
+          "p95": 2190.466,
+          "min": 774.469,
+          "max": 2190.466,
+          "sample_count": 10
+        },
+        "cross_device_transfer_time_us": {
+          "median": 0.0,
+          "p95": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "sample_count": 10
+        },
+        "sync_and_merge_time_us": {
+          "median": 0.0,
+          "p95": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "sample_count": 10
+        },
+        "download_time_us": {
+          "median": 24550.911,
+          "p95": 27612.309,
+          "min": 17509.494,
+          "max": 27612.309,
+          "sample_count": 10
+        },
+        "end_to_end_wallclock_us": {
+          "median": 28815.26,
+          "p95": 31424.049000000003,
+          "min": 21988.56,
+          "max": 31424.049000000003,
+          "sample_count": 10
+        },
+        "effective_throughput_gbps": 0.7277921490210396,
+        "correctness_verified": true
+      },
+      "partitioned_multigpu": {
+        "mode": "PartitionedMultiGpu",
+        "total_elements": 1048576,
+        "buffer_size_bytes": 4194304,
+        "dgpu_elements": 906177,
+        "igpu_elements": 142399,
+        "iterations": 10,
+        "warmup_iterations": 3,
+        "alloc_time_us": {
+          "median": 201.813,
+          "p95": 362.70799999999997,
+          "min": 165.904,
+          "max": 362.70799999999997,
+          "sample_count": 10
+        },
+        "upload_time_us": {
+          "median": 4561.844,
+          "p95": 4936.073,
+          "min": 4177.974999999999,
+          "max": 4936.073,
+          "sample_count": 10
+        },
+        "dgpu_compute_time_us": {
+          "median": 1184.7069999999999,
+          "p95": 1338.119,
+          "min": 383.46799999999996,
+          "max": 1338.119,
+          "sample_count": 10
+        },
+        "igpu_compute_time_us": {
+          "median": 478.418,
+          "p95": 720.937,
+          "min": 330.618,
+          "max": 720.937,
+          "sample_count": 10
+        },
+        "parallel_compute_time_us": {
+          "median": 1967.292,
+          "p95": 2396.747,
+          "min": 1451.904,
+          "max": 2396.747,
+          "sample_count": 10
+        },
+        "cross_device_transfer_time_us": {
+          "median": 3678.537,
+          "p95": 4037.929,
+          "min": 2722.013,
+          "max": 4037.929,
+          "sample_count": 10
+        },
+        "sync_and_merge_time_us": {
+          "median": 0.031,
+          "p95": 0.04,
+          "min": 0.03,
+          "max": 0.04,
+          "sample_count": 10
+        },
+        "download_time_us": {
+          "median": 25909.618,
+          "p95": 28266.209,
+          "min": 19860.674,
+          "max": 28266.209,
+          "sample_count": 10
+        },
+        "end_to_end_wallclock_us": {
+          "median": 36417.25,
+          "p95": 39349.422,
+          "min": 29608.174000000003,
+          "max": 39349.422,
+          "sample_count": 10
+        },
+        "effective_throughput_gbps": 0.5758677549787532,
+        "correctness_verified": true
+      },
+      "speedup_vs_dgpu": 0.8638619335617049,
+      "speedup_vs_igpu": 0.7912530462898764,
+      "outcome_summary": "Multi-Device execution is SLOWER (0.86x of dGPU latency). Cross-device transfer overhead (3678.5 us) outweighs parallel compute gains."
+    },
+    {
+      "total_elements": 4194304,
+      "buffer_size_bytes": 16777216,
+      "dgpu_only": {
+        "mode": "DiscreteGpuOnly",
+        "total_elements": 4194304,
+        "buffer_size_bytes": 16777216,
+        "dgpu_elements": 4194304,
+        "igpu_elements": 0,
+        "iterations": 10,
+        "warmup_iterations": 3,
+        "alloc_time_us": {
+          "median": 69.331,
+          "p95": 157.76899999999998,
+          "min": 63.992000000000004,
+          "max": 157.76899999999998,
+          "sample_count": 10
+        },
+        "upload_time_us": {
+          "median": 16415.86,
+          "p95": 16723.824,
+          "min": 15645.709,
+          "max": 16723.824,
+          "sample_count": 10
+        },
+        "dgpu_compute_time_us": {
+          "median": 789.99,
+          "p95": 902.3009999999999,
+          "min": 724.7760000000001,
+          "max": 902.3009999999999,
+          "sample_count": 10
+        },
+        "igpu_compute_time_us": {
+          "median": 0.0,
+          "p95": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "sample_count": 10
+        },
+        "parallel_compute_time_us": {
+          "median": 789.99,
+          "p95": 902.3009999999999,
+          "min": 724.7760000000001,
+          "max": 902.3009999999999,
+          "sample_count": 10
+        },
+        "cross_device_transfer_time_us": {
+          "median": 0.0,
+          "p95": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "sample_count": 10
+        },
+        "sync_and_merge_time_us": {
+          "median": 0.0,
+          "p95": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "sample_count": 10
+        },
+        "download_time_us": {
+          "median": 100624.416,
+          "p95": 109693.559,
+          "min": 75160.363,
+          "max": 109693.559,
+          "sample_count": 10
+        },
+        "end_to_end_wallclock_us": {
+          "median": 120370.89300000001,
+          "p95": 129895.43000000001,
+          "min": 94630.456,
+          "max": 129895.43000000001,
+          "sample_count": 10
+        },
+        "effective_throughput_gbps": 0.6968967157201368,
+        "correctness_verified": true
+      },
+      "igpu_only": {
+        "mode": "IntegratedGpuOnly",
+        "total_elements": 4194304,
+        "buffer_size_bytes": 16777216,
+        "dgpu_elements": 0,
+        "igpu_elements": 4194304,
+        "iterations": 10,
+        "warmup_iterations": 3,
+        "alloc_time_us": {
+          "median": 3646.677,
+          "p95": 6394.099999999999,
+          "min": 662.0559999999999,
+          "max": 6394.099999999999,
+          "sample_count": 10
+        },
+        "upload_time_us": {
+          "median": 9791.203,
+          "p95": 11020.776,
+          "min": 8977.58,
+          "max": 11020.776,
+          "sample_count": 10
+        },
+        "dgpu_compute_time_us": {
+          "median": 0.0,
+          "p95": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "sample_count": 10
+        },
+        "igpu_compute_time_us": {
+          "median": 3964.4100000000003,
+          "p95": 5692.89,
+          "min": 2416.384,
+          "max": 5692.89,
+          "sample_count": 10
+        },
+        "parallel_compute_time_us": {
+          "median": 3964.4100000000003,
+          "p95": 5692.89,
+          "min": 2416.384,
+          "max": 5692.89,
+          "sample_count": 10
+        },
+        "cross_device_transfer_time_us": {
+          "median": 0.0,
+          "p95": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "sample_count": 10
+        },
+        "sync_and_merge_time_us": {
+          "median": 0.0,
+          "p95": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "sample_count": 10
+        },
+        "download_time_us": {
+          "median": 100615.149,
+          "p95": 116772.69799999999,
+          "min": 71954.091,
+          "max": 116772.69799999999,
+          "sample_count": 10
+        },
+        "end_to_end_wallclock_us": {
+          "median": 118196.909,
+          "p95": 132911.12099999998,
+          "min": 89099.44499999999,
+          "max": 132911.12099999998,
+          "sample_count": 10
+        },
+        "effective_throughput_gbps": 0.7097146677498986,
+        "correctness_verified": true
+      },
+      "partitioned_multigpu": {
+        "mode": "PartitionedMultiGpu",
+        "total_elements": 4194304,
+        "buffer_size_bytes": 16777216,
+        "dgpu_elements": 3624707,
+        "igpu_elements": 569597,
+        "iterations": 10,
+        "warmup_iterations": 3,
+        "alloc_time_us": {
+          "median": 309.517,
+          "p95": 356.73699999999997,
+          "min": 247.76000000000002,
+          "max": 356.73699999999997,
+          "sample_count": 10
+        },
+        "upload_time_us": {
+          "median": 15998.397,
+          "p95": 17024.614,
+          "min": 15211.094,
+          "max": 17024.614,
+          "sample_count": 10
+        },
+        "dgpu_compute_time_us": {
+          "median": 780.44,
+          "p95": 921.4869999999999,
+          "min": 677.746,
+          "max": 921.4869999999999,
+          "sample_count": 10
+        },
+        "igpu_compute_time_us": {
+          "median": 932.799,
+          "p95": 1456.673,
+          "min": 748.029,
+          "max": 1456.673,
+          "sample_count": 10
+        },
+        "parallel_compute_time_us": {
+          "median": 2065.959,
+          "p95": 2617.295,
+          "min": 1416.357,
+          "max": 2617.295,
+          "sample_count": 10
+        },
+        "cross_device_transfer_time_us": {
+          "median": 13646.306,
+          "p95": 15359.786,
+          "min": 10070.713,
+          "max": 15359.786,
+          "sample_count": 10
+        },
+        "sync_and_merge_time_us": {
+          "median": 0.04,
+          "p95": 0.04,
+          "min": 0.03,
+          "max": 0.04,
+          "sample_count": 10
+        },
+        "download_time_us": {
+          "median": 98462.31499999999,
+          "p95": 112430.762,
+          "min": 74822.14099999999,
+          "max": 112430.762,
+          "sample_count": 10
+        },
+        "end_to_end_wallclock_us": {
+          "median": 132632.573,
+          "p95": 145868.771,
+          "min": 104146.20700000001,
+          "max": 145868.771,
+          "sample_count": 10
+        },
+        "effective_throughput_gbps": 0.6324696724386097,
+        "correctness_verified": true
+      },
+      "speedup_vs_dgpu": 0.9075515182835215,
+      "speedup_vs_igpu": 0.8911604919253131,
+      "outcome_summary": "Multi-Device execution is SLOWER (0.91x of dGPU latency). Cross-device transfer overhead (13646.3 us) outweighs parallel compute gains."
+    },
+    {
+      "total_elements": 16777216,
+      "buffer_size_bytes": 67108864,
+      "dgpu_only": {
+        "mode": "DiscreteGpuOnly",
+        "total_elements": 16777216,
+        "buffer_size_bytes": 67108864,
+        "dgpu_elements": 16777216,
+        "igpu_elements": 0,
+        "iterations": 10,
+        "warmup_iterations": 3,
+        "alloc_time_us": {
+          "median": 114.177,
+          "p95": 152.549,
+          "min": 97.705,
+          "max": 152.549,
+          "sample_count": 10
+        },
+        "upload_time_us": {
+          "median": 61932.461,
+          "p95": 73754.06599999999,
+          "min": 58570.173,
+          "max": 73754.06599999999,
+          "sample_count": 10
+        },
+        "dgpu_compute_time_us": {
+          "median": 4148.398,
+          "p95": 4618.63,
+          "min": 3799.317,
+          "max": 4618.63,
+          "sample_count": 10
+        },
+        "igpu_compute_time_us": {
+          "median": 0.0,
+          "p95": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "sample_count": 10
+        },
+        "parallel_compute_time_us": {
+          "median": 4148.398,
+          "p95": 4618.63,
+          "min": 3799.317,
+          "max": 4618.63,
+          "sample_count": 10
+        },
+        "cross_device_transfer_time_us": {
+          "median": 0.0,
+          "p95": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "sample_count": 10
+        },
+        "sync_and_merge_time_us": {
+          "median": 0.0,
+          "p95": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "sample_count": 10
+        },
+        "download_time_us": {
+          "median": 453636.35099999997,
+          "p95": 464895.528,
+          "min": 434244.516,
+          "max": 464895.528,
+          "sample_count": 10
+        },
+        "end_to_end_wallclock_us": {
+          "median": 521222.63599999994,
+          "p95": 529690.789,
+          "min": 500982.312,
+          "max": 529690.789,
+          "sample_count": 10
+        },
+        "effective_throughput_gbps": 0.6437639059098731,
+        "correctness_verified": true
+      },
+      "igpu_only": {
+        "mode": "IntegratedGpuOnly",
+        "total_elements": 16777216,
+        "buffer_size_bytes": 67108864,
+        "dgpu_elements": 0,
+        "igpu_elements": 16777216,
+        "iterations": 10,
+        "warmup_iterations": 3,
+        "alloc_time_us": {
+          "median": 6595.07,
+          "p95": 18189.283,
+          "min": 3044.486,
+          "max": 18189.283,
+          "sample_count": 10
+        },
+        "upload_time_us": {
+          "median": 36902.091,
+          "p95": 40977.952,
+          "min": 35690.030999999995,
+          "max": 40977.952,
+          "sample_count": 10
+        },
+        "dgpu_compute_time_us": {
+          "median": 0.0,
+          "p95": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "sample_count": 10
+        },
+        "igpu_compute_time_us": {
+          "median": 13335.096,
+          "p95": 17083.867,
+          "min": 9208.277,
+          "max": 17083.867,
+          "sample_count": 10
+        },
+        "parallel_compute_time_us": {
+          "median": 13335.096,
+          "p95": 17083.867,
+          "min": 9208.277,
+          "max": 17083.867,
+          "sample_count": 10
+        },
+        "cross_device_transfer_time_us": {
+          "median": 0.0,
+          "p95": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "sample_count": 10
+        },
+        "sync_and_merge_time_us": {
+          "median": 0.0,
+          "p95": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "sample_count": 10
+        },
+        "download_time_us": {
+          "median": 450726.13,
+          "p95": 464684.518,
+          "min": 421824.80700000003,
+          "max": 464684.518,
+          "sample_count": 10
+        },
+        "end_to_end_wallclock_us": {
+          "median": 510840.42100000003,
+          "p95": 520881.20800000004,
+          "min": 478717.137,
+          "max": 520881.20800000004,
+          "sample_count": 10
+        },
+        "effective_throughput_gbps": 0.6568476303091919,
+        "correctness_verified": true
+      },
+      "partitioned_multigpu": {
+        "mode": "PartitionedMultiGpu",
+        "total_elements": 16777216,
+        "buffer_size_bytes": 67108864,
+        "dgpu_elements": 14498828,
+        "igpu_elements": 2278388,
+        "iterations": 10,
+        "warmup_iterations": 3,
+        "alloc_time_us": {
+          "median": 352.84900000000005,
+          "p95": 1679.757,
+          "min": 312.262,
+          "max": 1679.757,
+          "sample_count": 10
+        },
+        "upload_time_us": {
+          "median": 57917.555,
+          "p95": 59837.016,
+          "min": 56611.267,
+          "max": 59837.016,
+          "sample_count": 10
+        },
+        "dgpu_compute_time_us": {
+          "median": 4291.7210000000005,
+          "p95": 4551.9439999999995,
+          "min": 3736.4570000000003,
+          "max": 4551.9439999999995,
+          "sample_count": 10
+        },
+        "igpu_compute_time_us": {
+          "median": 1990.8960000000002,
+          "p95": 3316.9709999999995,
+          "min": 1645.762,
+          "max": 3316.9709999999995,
+          "sample_count": 10
+        },
+        "parallel_compute_time_us": {
+          "median": 5192.7,
+          "p95": 5685.785,
+          "min": 4929.231,
+          "max": 5685.785,
+          "sample_count": 10
+        },
+        "cross_device_transfer_time_us": {
+          "median": 62490.369,
+          "p95": 63432.757000000005,
+          "min": 60656.941,
+          "max": 63432.757000000005,
+          "sample_count": 10
+        },
+        "sync_and_merge_time_us": {
+          "median": 0.04,
+          "p95": 0.07,
+          "min": 0.03,
+          "max": 0.07,
+          "sample_count": 10
+        },
+        "download_time_us": {
+          "median": 446362.192,
+          "p95": 457971.473,
+          "min": 433242.545,
+          "max": 457971.473,
+          "sample_count": 10
+        },
+        "end_to_end_wallclock_us": {
+          "median": 571746.135,
+          "p95": 584254.001,
+          "min": 555804.6749999999,
+          "max": 584254.001,
+          "sample_count": 10
+        },
+        "effective_throughput_gbps": 0.5868764115038574,
+        "correctness_verified": true
+      },
+      "speedup_vs_dgpu": 0.91163298550326,
+      "speedup_vs_igpu": 0.8934742007482045,
+      "outcome_summary": "Multi-Device execution is SLOWER (0.91x of dGPU latency). Cross-device transfer overhead (62490.4 us) outweighs parallel compute gains."
+    }
+  ]
+}

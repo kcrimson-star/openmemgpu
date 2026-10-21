@@ -1,0 +1,26 @@
+[package]
+name = "openmemgpu-cli"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "openmemgpu-cli"
+path = "src/main.rs"
+
+[dependencies]
+openmemgpu-core.workspace = true
+openmemgpu-device-discovery.workspace = true
+openmemgpu-backend-amd.workspace = true
+openmemgpu-backend-vulkan.workspace = true
+openmemgpu-memory.workspace = true
+openmemgpu-vvram.workspace = true
+openmemgpu-scheduler.workspace = true
+openmemgpu-transfer.workspace = true
+openmemgpu-integrations.workspace = true
+openmemgpu-bench.workspace = true
+clap.workspace = true
+tracing.workspace = true
+tracing-subscriber.workspace = true
+serde_json.workspace = true

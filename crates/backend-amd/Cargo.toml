@@ -1,0 +1,11 @@
+[package]
+name = "openmemgpu-backend-amd"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+
+[dependencies]
+openmemgpu-core.workspace = true
+tracing.workspace = true
+serde.workspace = true

@@ -1,0 +1,12 @@
+[package]
+name = "openmemgpu-scheduler"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+
+[dependencies]
+openmemgpu-core.workspace = true
+openmemgpu-vvram.workspace = true
+tracing.workspace = true
+serde.workspace = true

@@ -1,0 +1,52 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/core",
+    "crates/device-discovery",
+    "crates/backend-vulkan",
+    "crates/backend-amd",
+    "crates/vvram",
+    "crates/memory",
+    "crates/scheduler",
+    "crates/transfer",
+    "crates/integrations",
+    "crates/bench",
+    "crates/cli",
+    "crates/gui",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+authors = ["OpenMemGPU Systems Research Team"]
+license = "MIT OR Apache-2.0"
+readme = "README.md"
+
+[workspace.dependencies]
+# Internal workspace crates
+openmemgpu-core = { path = "crates/core" }
+openmemgpu-device-discovery = { path = "crates/device-discovery" }
+openmemgpu-backend-vulkan = { path = "crates/backend-vulkan" }
+openmemgpu-backend-amd = { path = "crates/backend-amd" }
+openmemgpu-vvram = { path = "crates/vvram" }
+openmemgpu-memory = { path = "crates/memory" }
+openmemgpu-scheduler = { path = "crates/scheduler" }
+openmemgpu-transfer = { path = "crates/transfer" }
+openmemgpu-integrations = { path = "crates/integrations" }
+openmemgpu-bench = { path = "crates/bench" }
+
+# External crates
+eframe = { version = "0.31", default-features = false, features = ["default", "wayland", "x11"] }
+ash = "0.38"
+gpu-allocator = { version = "0.27", default-features = false, features = ["vulkan"] }
+parking_lot = "0.12"
+thiserror = "2.0"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+clap = { version = "4.5", features = ["derive"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+crossbeam-channel = "0.5"
+tokio = { version = "1.40", features = ["full"] }
+criterion = "0.5"
+raw-window-handle = "0.6"

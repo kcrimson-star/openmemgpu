@@ -1,0 +1,51 @@
+{
+  "timestamp_utc": "2026-10-21T12:00:00Z",
+  "os_name": "Pop!_OS 24.04 LTS",
+  "kernel_version": "Linux 7.2.6-generic",
+  "device_reports": [
+    {
+      "device_name": "AMD Radeon RX 5600M (RADV NAVI10)",
+      "device_kind": "DiscreteGpu",
+      "pci_address": "0000:03:00.0",
+      "subgroup_size": 64,
+      "driver_version": "26.1.6",
+      "evidence": "MeasuredOnPhysicalHardware",
+      "element_count": 1048576,
+      "buffer_size_bytes": 4194304,
+      "iterations": 20,
+      "warmup_iterations": 5,
+      "init_pipeline_time_us": 2368.978,
+      "alloc_time_us_median": 3567.082,
+      "upload_time_us_median": 2275.901,
+      "dispatch_time_us_median": 1722.325,
+      "download_time_us_median": 23582.915,
+      "total_steady_state_us_median": 27581.141,
+      "effective_bandwidth_gbps": 7.305770978183561,
+      "correctness_verified": true,
+      "vram_budget_bytes": 6375034880,
+      "vram_usage_bytes": 0
+    },
+    {
+      "device_name": "AMD Radeon Graphics (RADV RENOIR)",
+      "device_kind": "IntegratedGpu",
+      "pci_address": "0000:07:00.0",
+      "subgroup_size": 64,
+      "driver_version": "26.1.6",
+      "evidence": "MeasuredOnPhysicalHardware",
+      "element_count": 1048576,
+      "buffer_size_bytes": 4194304,
+      "iterations": 20,
+      "warmup_iterations": 5,
+      "init_pipeline_time_us": 2155.003,
+      "alloc_time_us_median": 2011.4820000000002,
+      "upload_time_us_median": 2243.741,
+      "dispatch_time_us_median": 726.072,
+      "download_time_us_median": 17674.948,
+      "total_steady_state_us_median": 20644.761,
+      "effective_bandwidth_gbps": 17.330116021551582,
+      "correctness_verified": true,
+      "vram_budget_bytes": 5424005120,
+      "vram_usage_bytes": 0
+    }
+  ]
+}

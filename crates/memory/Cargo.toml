@@ -1,0 +1,12 @@
+[package]
+name = "openmemgpu-memory"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+
+[dependencies]
+openmemgpu-core.workspace = true
+parking_lot.workspace = true
+tracing.workspace = true
+serde.workspace = true

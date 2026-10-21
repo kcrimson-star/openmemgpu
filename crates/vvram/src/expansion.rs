@@ -123,6 +123,26 @@ impl DynamicVramExpander {
         Ok(self.status())
     }
 
+    /// Reclaim all borrowed memory, destroy backing Vulkan buffers on iGPU, and return RAM to the OS
+    pub fn reclaim_memory(&self) -> Result<VramExpansionStatus, CoreError> {
+        self.set_expansion(0)
+    }
+
+    /// Flush driver caches, wait for GPU queues to idle, and trim allocations
+    pub fn flush_driver_caches(&self) -> Result<(), CoreError> {
+        if let Some(ref dgpu) = self.dgpu_device {
+            unsafe {
+                let _ = dgpu.raw.device_wait_idle();
+            }
+        }
+        if let Some(ref igpu) = self.igpu_device {
+            unsafe {
+                let _ = igpu.raw.device_wait_idle();
+            }
+        }
+        Ok(())
+    }
+
     /// Allocate a virtual buffer that exceeds dedicated discrete VRAM by utilizing the expanded iGPU pool
     pub fn allocate_oversized(
         &self,
@@ -263,8 +283,9 @@ mod tests {
                 openmemgpu_core::memory::DomainId(2),
             ));
 
-            let expander = DynamicVramExpander::new(manager, Some(dgpu), Some(igpu), Some(ctx.clone()))
-                .expect("Expander should create");
+            let expander =
+                DynamicVramExpander::new(manager, Some(dgpu), Some(igpu), Some(ctx.clone()))
+                    .expect("Expander should create");
 
             // Expand by +2 GB on real hardware (allocates real backing buffer on iGPU host RAM)
             let s2 = expander

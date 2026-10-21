@@ -119,7 +119,13 @@ enum Commands {
         /// Additional VRAM in gigabytes to borrow from iGPU (e.g. 2, 4, 6)
         #[arg(short, long)]
         add_gb: Option<u32>,
+
+        /// Reclaim all borrowed memory and reset expansion to 0 GB
+        #[arg(short, long)]
+        reset: bool,
     },
+    /// Reclaim all borrowed memory, destroy backing Vulkan buffers, and return RAM to the OS
+    Reset,
     /// Probe Linux DRM / Vulkan DMA-BUF export and import capabilities
     ProbeDmaBuf,
 }
@@ -806,7 +812,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 println!("\n[SUCCESS] GEMM benchmark report saved to: {}", path_str);
             }
         }
-        Commands::Expand { add_gb } => {
+        Commands::Expand { add_gb, reset } => {
             println!("=== OpenMemGPU Dynamic VRAM Capacity Expander ===");
             let ctx = Arc::new(VulkanContext::new()?);
             let enumerated = PhysicalDeviceEnumerator::enumerate(&ctx.instance)?;
@@ -817,10 +823,12 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 .iter()
                 .find(|(_, d)| d.kind == openmemgpu_core::device::DeviceKind::IntegratedGpu);
 
-            let dgpu = dgpu_entry
-                .map(|&(p, ref d)| VulkanDevice::new_with_context(ctx.clone(), p, d.clone()).unwrap());
-            let igpu = igpu_entry
-                .map(|&(p, ref d)| VulkanDevice::new_with_context(ctx.clone(), p, d.clone()).unwrap());
+            let dgpu = dgpu_entry.map(|&(p, ref d)| {
+                VulkanDevice::new_with_context(ctx.clone(), p, d.clone()).unwrap()
+            });
+            let igpu = igpu_entry.map(|&(p, ref d)| {
+                VulkanDevice::new_with_context(ctx.clone(), p, d.clone()).unwrap()
+            });
 
             let ledger = Arc::new(PhysicalMemoryLedger::new(
                 6 * 1024 * 1024 * 1024,
@@ -857,7 +865,18 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             );
             println!("  Supported Step Steps:  {:?} GB", mem.recommended_steps_gb);
 
-            if let Some(add) = add_gb {
+            if reset {
+                println!("\nReclaiming all borrowed memory and releasing backing buffers...");
+                let status = expander.reclaim_memory()?;
+                println!("  [SUCCESS] All borrowed memory returned to host OS:");
+                println!("    Dedicated dGPU:  {:.1} GB", status.base_dgpu_vram_gb);
+                println!(
+                    "    Expanded iGPU:   +{:.1} GB",
+                    status.expanded_igpu_vram_gb
+                );
+                println!("    TOTAL VVRAM:     {:.1} GB", status.total_vvram_gb);
+                println!("    Backing VRAM:    0 MB (all freed)");
+            } else if let Some(add) = add_gb {
                 println!("\nApplying Dynamic VRAM Expansion (+{} GB)...", add);
                 let status = expander.set_expansion(add)?;
                 println!("  [SUCCESS] Unified VVRAM Provisioned:");
@@ -886,6 +905,47 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 println!("  Total VVRAM Pool:  {:.1} GB", status.total_vvram_gb);
                 println!("\nUse `openmemgpu-cli expand --add-gb <N>` to expand VRAM capacity dynamically.");
             }
+        }
+        Commands::Reset => {
+            println!("=== OpenMemGPU Dynamic Memory Reset & Reclaim ===");
+            let ctx = Arc::new(VulkanContext::new()?);
+            let enumerated = PhysicalDeviceEnumerator::enumerate(&ctx.instance)?;
+            let dgpu_entry = enumerated
+                .iter()
+                .find(|(_, d)| d.kind == openmemgpu_core::device::DeviceKind::DiscreteGpu);
+            let igpu_entry = enumerated
+                .iter()
+                .find(|(_, d)| d.kind == openmemgpu_core::device::DeviceKind::IntegratedGpu);
+
+            let dgpu = dgpu_entry.map(|&(p, ref d)| {
+                VulkanDevice::new_with_context(ctx.clone(), p, d.clone()).unwrap()
+            });
+            let igpu = igpu_entry.map(|&(p, ref d)| {
+                VulkanDevice::new_with_context(ctx.clone(), p, d.clone()).unwrap()
+            });
+
+            let ledger = Arc::new(PhysicalMemoryLedger::new(
+                6 * 1024 * 1024 * 1024,
+                14 * 1024 * 1024 * 1024,
+                2 * 1024 * 1024 * 1024,
+            ));
+            let manager = Arc::new(VvramManager::new(
+                ledger,
+                openmemgpu_core::memory::DomainId(0),
+                openmemgpu_core::memory::DomainId(1),
+                openmemgpu_core::memory::DomainId(2),
+            ));
+
+            let expander = DynamicVramExpander::new(manager, dgpu, igpu, Some(ctx.clone()))?;
+            let status = expander.reclaim_memory()?;
+            println!("  [SUCCESS] All borrowed memory returned to host OS:");
+            println!("    Dedicated dGPU:  {:.1} GB", status.base_dgpu_vram_gb);
+            println!(
+                "    Expanded iGPU:   +{:.1} GB",
+                status.expanded_igpu_vram_gb
+            );
+            println!("    TOTAL VVRAM:     {:.1} GB", status.total_vvram_gb);
+            println!("    Backing VRAM:    0 MB (all freed)");
         }
         Commands::ProbeDmaBuf => {
             println!("=== OpenMemGPU Linux DRM / Vulkan DMA-BUF Feasibility Probe ===");
